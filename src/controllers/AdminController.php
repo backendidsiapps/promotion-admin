@@ -64,7 +64,7 @@ class AdminController extends Controller
         $sum = $qForPrices->where('is_paid', 1)->sum('price');
         $orders = $qForOrders->paginate(50);
 
-        return view('admin.orders', compact('orders', 'sum'));
+        return view('admin:orders', compact('orders', 'sum'));
     }
 
     public function search()
@@ -83,7 +83,7 @@ class AdminController extends Controller
             $q->where('id', $search)->orWhere('smmlaba_order_id', $search)->orWhere('url', 'LIKE', '%' . $search . '%');
         })->paginate(50);
 
-        return view('admin.orders', compact('orders', 'sum'));
+        return view('admin:orders', compact('orders', 'sum'));
 
     }
 
@@ -109,7 +109,7 @@ class AdminController extends Controller
 
         $countries = Country::all();
 
-        return view('admin.prices', compact('countries', 'service'));
+        return view('admin:prices', compact('countries', 'service'));
     }
 
     public function generatePromocode()
@@ -118,7 +118,7 @@ class AdminController extends Controller
 
         $promocode = Promocode::generateCode(10, $discount);
 
-        return view('admin.promocode', compact('promocode'));
+        return view('admin:promocode', compact('promocode'));
     }
 
     private function normalizeDiscount(int $discount)
@@ -134,7 +134,7 @@ class AdminController extends Controller
 
     public function promocode()
     {
-        return view('admin.promocode');
+        return view('admin:promocode');
     }
 
     /**
@@ -166,7 +166,7 @@ class AdminController extends Controller
     {
         $services = Service::with('packs')->get();
 
-        return view('admin.packs', compact('services'));
+        return view('admin:packs', compact('services'));
     }
 
     /**
@@ -241,7 +241,7 @@ class AdminController extends Controller
     {
         $feedbacks = Feedback::orderByDesc('id')->get();
 
-        return view('admin.feedback', compact('feedbacks'));
+        return view('admin:feedback', compact('feedbacks'));
     }
 
     public function stats()
@@ -267,6 +267,6 @@ class AdminController extends Controller
             $service->quantity = Order::where('is_paid', 1)->where('service_id', $service->id)->whereBetween('created_at', [$from, $to])->sum('quantity') / $totalQuantity * 100;
         }
 
-        return view('admin.stats', compact('services', 'data'));
+        return view('admin:stats', compact('services', 'data'));
     }
 }
