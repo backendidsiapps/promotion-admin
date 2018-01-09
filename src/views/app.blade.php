@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'MyInsapromotion') }}</title>
 
     <!-- Styles -->
-    <link href="https://raw.githubusercontent.com/backendidsiapps/promotion-admin/master/src/assets/admin.css"
+    <link href="https://rawgit.com/backendidsiapps/promotion-admin/master/src/assets/admin.css"
           rel="stylesheet">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -100,6 +100,6 @@
 </div>
 
 <!-- Scripts -->
-<script src="https://raw.githubusercontent.com/backendidsiapps/promotion-admin/master/src/assets/admin.js"></script>
+<script src="https://rawgit.com/backendidsiapps/promotion-admin/master/src/assets/admin.js"></script>
 </body>
 </html>
