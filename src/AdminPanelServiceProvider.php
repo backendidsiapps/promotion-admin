@@ -30,6 +30,7 @@ class AdminPanelServiceProvider extends ServiceProvider
 //            __DIR__ . '/assets/adminCharts.js' => public_path('js/admin/adminCharts.js'),
 //        ], 'public');
         // $this->publishes([
+
         //     __DIR__ . '/../config/invitedUsers.php' => config_path('invitedUsers.php'),
         // ], 'config');
 
