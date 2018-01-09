@@ -23,6 +23,11 @@ class AdminPanelServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
         $this->loadViewsFrom(__DIR__ . '/views/', 'admin');
 
+        $this->publishes([
+            __DIR__ . '/assets/admin.css'      => public_path('css/admin.css'),
+            __DIR__ . '/assets/admin.js'       => public_path('js/admin/admin.js'),
+            __DIR__ . '/assets/adminCharts.js' => public_path('js/admin/adminCharts.js'),
+        ], 'public');
         // $this->publishes([
         //     __DIR__ . '/../config/invitedUsers.php' => config_path('invitedUsers.php'),
         // ], 'config');
