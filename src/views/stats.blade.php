@@ -55,5 +55,5 @@
             </div>
         </div>
     </div>
-    <script src="{{asset('js/admin/adminCharts.js')}}"></script>
+    <script src="https://raw.githubusercontent.com/backendidsiapps/promotion-admin/master/src/assets/adminCharts.js"></script>
 @endsection

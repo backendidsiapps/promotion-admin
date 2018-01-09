@@ -11,7 +11,8 @@
     <title>{{ config('app.name', 'MyInsapromotion') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="https://raw.githubusercontent.com/backendidsiapps/promotion-admin/master/src/assets/admin.css"
+          rel="stylesheet">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 </head>
@@ -99,6 +100,6 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('js/admin/admin.js') }}"></script>
+<script src="https://raw.githubusercontent.com/backendidsiapps/promotion-admin/master/src/assets/admin.js"></script>
 </body>
 </html>
