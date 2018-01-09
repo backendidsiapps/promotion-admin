@@ -1,6 +1,6 @@
 <?php
 
-namespace Multichat;
+namespace AdminPanel;
 
 use Illuminate\Support\ServiceProvider;
 

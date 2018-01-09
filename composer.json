@@ -13,7 +13,9 @@
       "email": "backendidsiapps@gmail.com"
     }
   ],
-  "require": {},
+  "require": {
+    "backendidsiapps/promotion-admin": "*"
+  },
   "autoload": {
     "psr-4": {
       "AdminPanel\\": "src/"
