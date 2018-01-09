@@ -15,6 +15,7 @@ use DB;
 use function back;
 use function compact;
 use function redirect;
+use function request;
 use function route;
 use function session;
 use function view;
@@ -103,13 +104,15 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function prices($serviceID)
+    public function prices($countryID)
     {
-        $service = Service::getPricesForAllCountries($serviceID);
+        $services = Service::getAllPricesForCurrentCountry($countryID);
 
-        $countries = Country::all();
+        $country = Country::find($countryID);
 
-        return view('admin::prices', compact('countries', 'service'));
+//        dd($services);
+
+        return view('admin::prices', compact('country', 'services'));
     }
 
     public function generatePromocode()
@@ -187,7 +190,7 @@ class AdminController extends Controller
         }
         DB::commit();
 
-        return redirect()->back();
+        return redirect(request('backURL'));
     }
 
     public function updateCommentOrder()

@@ -58,9 +58,10 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    @foreach($services as $service)
+                                    @foreach($countries as $country)
                                         <li>
-                                            <a href="/admin/prices/{{$service->id}}" onclick=""> {{$service->name}} </a>
+                                            <a href="/admin/prices/{{$country->id}}"
+                                               onclick=""> {{mb_strtoupper($country->locale_word)}} </a>
                                         </li>
                                     @endforeach
 
