@@ -7,7 +7,7 @@
                 @foreach($services as $service)
                     <div class="panel panel-default" id="{{$service->id}}">
                         <div class="panel-heading">
-                            <h5 class="text-center"><b>{{$service->name}}</b> | {{strtoupper($country->iso)}}
+                            <h5 class="text-center"><b>{{$service->description}}</b> | {{strtoupper($country->iso)}}
                             </h5>
                         </div>
                         <div class="panel-body">
