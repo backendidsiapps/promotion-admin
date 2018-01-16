@@ -229,8 +229,8 @@ class AdminController extends Controller
                 [
                     'country_id'             => $country->id,
                     'pack_id'                => $pack->id,
-                    'price'                  => 999.99,
-                    'price_without_discount' => 999.99,
+                    'price'                  => 0.0,
+                    'price_without_discount' => 0.0,
                 ]
             );
 
