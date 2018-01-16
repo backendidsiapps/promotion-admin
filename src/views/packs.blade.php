@@ -4,13 +4,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">Пакеты</div>
-                    @foreach($services as $service)
+                @foreach($services as $service)
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4><b>{{$service->description}}</b></h4>
+                        </div>
                         <div class="panel-body">
 
-                            <h3>{{$service->name}}</h3>
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
@@ -61,9 +60,9 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
 
-                    @endforeach
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
