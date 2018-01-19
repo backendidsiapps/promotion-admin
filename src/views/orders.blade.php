@@ -45,8 +45,11 @@
                             <thead>
                             <tr>
                                 <th class="text-center" scope="col">
-                                    <a href="/admin/orders?id=desc">&#8639;</a>
                                     #
+                                </th>
+                                <th class="text-center" scope="col">
+                                    <a href="/admin/orders?id=desc">&#8639;</a>
+                                    ID
                                     <a href="/admin/orders?id=asc">&#8642;</a>
                                 </th>
                                 <th class="text-center" scope="col">
@@ -89,8 +92,10 @@
                             </thead>
                             <tbody>
                             @if(!empty($orders))
-                                @foreach($orders as $order)
+                                {{--{{$iter}}--}}
+                                @foreach($orders as $iter => $order)
                                     <tr>
+                                        <th class="" scope="row"><h4>{{$iter+1}}</h4></th>
                                         <th class="" scope="row"><h4>{{$order->id}}</h4></th>
                                         <th class="" scope="row">
                                             <h4>{{$order->created_at->timezone('Asia/Krasnoyarsk')->format('d.m.Y H:i')}}</h4>
