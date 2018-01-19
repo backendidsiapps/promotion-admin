@@ -12,8 +12,8 @@
                             <p class="">Кол-во заказов: <span style="background-color: #e74c3c"
                                                               class="badge big-font">{{$data->totalCount}}</span>
                             </p>
-                            <p class="">Кол-во единиц: <span style="background-color: #F1C40F"
-                                                             class="badge big-font">{{$data->totalQuantity}}</span></p>
+                            {{--<p class="">Кол-во единиц: <span style="background-color: #F1C40F"--}}
+                            {{--class="badge big-font">{{$data->totalQuantity}}</span></p>--}}
                             <p class="">Сумма: <span style="background-color: #E74C3C"
                                                      class="badge big-font">{{$data->totalPrice}}</span> $</p>
                         </div>
@@ -42,10 +42,27 @@
 
                         @elseif(!empty($services) && count($services) >1)
                             <script type="text/javascript">
+                                google.charts.load('current', {packages: ['corechart', 'bar']});
+                                google.charts.setOnLoadCallback(drawMaterial);
+
+                                function drawMaterial() {
+                                    var data = google.visualization.arrayToDataTable(
+                                        window.dataArr
+                                    );
+
+                                    var materialOptions = {
+                                        bars: 'horizontal',
+                                        height: {{count($services)*30}},
+                                        colors: ['#18b900', '#d1cd00', "#828282"]
+                                    };
+                                    var materialChart = new google.charts.Bar(document.getElementById('chart_div'));
+                                    materialChart.draw(data, materialOptions);
+                                }
+
                                 window.dataArr = [];
-                                window.dataArr.push(['', 'заказы', 'объемы', 'доход', 'неоплаченные заказы']);
+                                window.dataArr.push(['', 'доход', 'кол-во заказов', 'неоплаченные заказы']);
                                 @foreach($services as $service)
-                                window.dataArr.push(['{{mb_strtoupper($service->name)}}', {{$service->count}},  {{$service->quantity}}, {{$service->sum}},{{$service->countNotPaid}}]);
+                                window.dataArr.push(['{{mb_strtoupper($service->description)}}', {{$service->sum}},{{$service->count}},  {{$service->countNotPaid}}]);
                                 @endforeach
                             </script>
                             <div id="chart_div"></div>
@@ -55,5 +72,5 @@
             </div>
         </div>
     </div>
-    <script src="https://rawgit.com/backendidsiapps/promotion-admin/master/src/assets/adminCharts.js"></script>
+    {{--<script src="https://rawgit.com/backendidsiapps/promotion-admin/master/src/assets/adminCharts.js"></script>--}}
 @endsection
