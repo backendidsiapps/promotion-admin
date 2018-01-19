@@ -52,11 +52,17 @@ class AdminController extends Controller
 
 
         $qForOrders = Order::select('*')->whereBetween('created_at', [$from, $to]);
+
         $keys = ['id', 'url', 'quantity', 'price', 'smmlaba_order_id'];
+        $flag = true;
         foreach ($keys as $key) {
             if (request()->has($key)) {
                 $qForOrders = $qForOrders->orderBy($key, request($key));
+                $flag = false;
             }
+        }
+        if ($flag) {
+            $qForOrders->orderByDesc('id');
         }
         if (session()->has('is_paid')) {
             $qForOrders = $qForOrders->where('is_paid', 1);
