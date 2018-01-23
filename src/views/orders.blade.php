@@ -11,7 +11,7 @@
                     <div style="display: flex;flex-direction: row;">
                         <form class="navbar-form" role="search" action="/admin/search" method="get">
                             <div class="input-group add-on">
-                                <input title="поиск по ID|URL|smmlabaID" class="form-control" placeholder="Search"
+                                <input title="поиск по ID|URL|apiID" class="form-control" placeholder="Search"
                                        name="search" id="srch-term"
                                        type="text" value="{{request('search','')}}">
                                 <div class="input-group-btn">
@@ -85,7 +85,7 @@
                                 </th>
                                 <th class="text-center" scope="col">
                                     <a href="/admin/orders?smmlaba_order_id=desc">&#8639;</a>
-                                    smmlaba ID
+                                    apiID
                                     <a href="/admin/orders?smmlaba_order_id=asc">&#8642;</a>
                                 </th>
                                 <th class="text-center" scope="col">комментарий</th>
