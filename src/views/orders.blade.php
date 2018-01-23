@@ -53,6 +53,9 @@
                                     <a href="/admin/orders?id=asc">&#8642;</a>
                                 </th>
                                 <th class="text-center" scope="col">
+                                    страна
+                                </th>
+                                <th class="text-center" scope="col">
                                     дата
                                 </th>
                                 <th class="text-center" scope="col">услуга</th>
@@ -97,6 +100,7 @@
                                     <tr>
                                         <th class="" scope="row"><h4>{{$iter+1}}</h4></th>
                                         <th class="" scope="row"><h4>{{$order->id}}</h4></th>
+                                        <th class="" scope="row"><h4>{{$order->country['locale_word']}}</h4></th>
                                         <th class="" scope="row">
                                             <h4>{{$order->created_at->timezone('Asia/Krasnoyarsk')->format('d.m.Y H:i')}}</h4>
                                         </th>
