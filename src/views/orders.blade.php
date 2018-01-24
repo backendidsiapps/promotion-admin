@@ -76,11 +76,11 @@
                                     <a href="/admin/orders?price=asc">&#8642;</a>
                                 </th>
                                 <th style="font-size: small" scope="col">
-                                    <a href="/admin/set-is_paid?paid=all">все</a>@if(session('is_paid','all')=='all')
+                                    <a href="/admin/set-is_paid?is_paid=all">все</a>@if(session('is_paid','all')=='all')
                                         ✔ @endif<br>
-                                    <a href="/admin/set-is_paid?paid=paid">оплаченные</a>@if(session('is_paid','')=='paid')
+                                    <a href="/admin/set-is_paid?is_paid=paid">оплаченные</a>@if(session('is_paid','')=='paid')
                                         ✔ @endif<br>
-                                    <a href="/admin/set-is_paid?paid=not_paid">не
+                                    <a href="/admin/set-is_paid?is_paid=not_paid">не
                                         оплаченные</a>@if(session('is_paid','')=='not_paid')
                                         ✔ @endif
                                 </th>
