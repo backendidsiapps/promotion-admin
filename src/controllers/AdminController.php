@@ -108,7 +108,7 @@ class AdminController extends Controller
             session(['paid' => 'paid']);
         }
 
-        return back();
+        return redirect()->route('admin orders');
     }
 
     /**
