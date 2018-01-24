@@ -10,10 +10,13 @@ use App\Pack;
 use App\Price;
 use App\Promocode;
 use App\Service;
+use Auth;
 use Carbon\Carbon;
 use DB;
 use function back;
+use function cache;
 use function compact;
+use function now;
 use function redirect;
 use function request;
 use function route;
@@ -99,16 +102,17 @@ class AdminController extends Controller
 
     public function isPaid()
     {
+        $key = Auth::user()->email . '_is_paid';
 
-        if (request('is_paid', '') == 'all') {
-            session(['is_paid' => 'all']);
+        if (request('is_paid', 'all') == 'all') {
+            cache([$key => 'all'], now()->addYear());
         } elseif (request('is_paid') == 'not_paid') {
-            session(['is_paid' => 'not_paid']);
+            cache([$key => 'not_paid'], now()->addYear());
         } elseif (request('is_paid') == 'paid') {
-            session(['is_paid' => 'paid']);
+            cache([$key => 'paid'], now()->addYear());
         }
 
-        return redirect()->route('admin orders');
+        return back();
     }
 
     /**
