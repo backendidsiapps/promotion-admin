@@ -13,14 +13,11 @@ use App\Service;
 use Carbon\Carbon;
 use DB;
 use function back;
-use function cache;
 use function compact;
-use function now;
 use function redirect;
 use function request;
 use function route;
 use function session;
-use function session_id;
 use function view;
 
 
@@ -67,6 +64,7 @@ class AdminController extends Controller
         if ($flag) {
             $qForOrders->orderByDesc('id');
         }
+
         $paid = session('is_paid', 'all');
         if ($paid == 'paid') {
             $qForOrders = $qForOrders->where('is_paid', 1);
@@ -102,17 +100,16 @@ class AdminController extends Controller
 
     public function isPaid()
     {
-        $key = session_id() . '_is_paid';
 
-        if (request('is_paid', 'all') == 'all') {
-            cache([$key => 'all'], now()->addYear());
+        if (request('is_paid', '') == 'all') {
+            session(['is_paid' => 'all']);
         } elseif (request('is_paid') == 'not_paid') {
-            cache([$key => 'not_paid'], now()->addYear());
+            session(['is_paid' => 'not_paid']);
         } elseif (request('is_paid') == 'paid') {
-            cache([$key => 'paid'], now()->addYear());
+            session(['is_paid' => 'paid']);
         }
 
-        return back();
+        return redirect()->route('admin orders');
     }
 
     /**
