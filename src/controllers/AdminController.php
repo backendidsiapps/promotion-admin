@@ -23,6 +23,7 @@ use function view;
 
 /**
  * Class AdminController
+ *
  * @package App\Http\Controllers
  */
 class AdminController extends Controller
@@ -86,13 +87,17 @@ class AdminController extends Controller
             return redirect(route('admin orders'));
         }
         $sum = Order::where('is_paid', 1)
-            ->where(function ($q) use ($search) {
-                $q->where('id', $search)->orWhere('smmlaba_order_id', $search)->orWhere('url', 'LIKE', '%' . $search . '%');
-            })->sum('price');
+            ->where(
+                function ($q) use ($search) {
+                    $q->where('id', $search)->orWhere('smmlaba_order_id', $search)->orWhere('url', 'LIKE', '%' . $search . '%');
+                }
+            )->sum('price');
 
-        $orders = Order::where(function ($q) use ($search) {
-            $q->where('id', $search)->orWhere('smmlaba_order_id', $search)->orWhere('url', 'LIKE', '%' . $search . '%');
-        })->paginate(50);
+        $orders = Order::where(
+            function ($q) use ($search) {
+                $q->where('id', $search)->orWhere('smmlaba_order_id', $search)->orWhere('url', 'LIKE', '%' . $search . '%');
+            }
+        )->paginate(50);
 
         return view('admin::orders', compact('orders', 'sum'));
 
@@ -123,7 +128,7 @@ class AdminController extends Controller
 
         $country = Country::find($countryID);
 
-//        dd($services);
+        //        dd($services);
 
         return view('admin::prices', compact('country', 'services'));
     }
@@ -270,19 +275,18 @@ class AdminController extends Controller
         $totalCount = Order::where('is_paid', 1)->whereBetween('created_at', [$from, $to])->count();
         $totalCountNotPaid = Order::where('is_paid', 0)->whereBetween('created_at', [$from, $to])->count();
         $totalPrice = Order::where('is_paid', 1)->whereBetween('created_at', [$from, $to])->sum('price');
-//        $totalQuantity = Order::where('is_paid', 1)->whereBetween('created_at', [$from, $to])->sum('quantity');
+        //        $totalQuantity = Order::where('is_paid', 1)->whereBetween('created_at', [$from, $to])->sum('quantity');
 
         $data = (object)compact('totalPrice', 'totalCount', 'totalQuantity');
-        if (
-//            !$totalQuantity ||
-            !$totalCount || !$totalPrice || !$totalCountNotPaid) {
+        if (!$totalCount || !$totalPrice || !$totalCountNotPaid
+        ) {
             return back()->withErrors(['error' => 'ничего не найдено']);
         }
         foreach ($services as $service) {
             $service->countNotPaid = Order::where('is_paid', 0)->where('service_id', $service->id)->whereBetween('created_at', [$from, $to])->count() / $totalCountNotPaid * 100;
             $service->count = Order::where('is_paid', 1)->where('service_id', $service->id)->whereBetween('created_at', [$from, $to])->count() / $totalCount * 100;
             $service->sum = Order::where('is_paid', 1)->where('service_id', $service->id)->whereBetween('created_at', [$from, $to])->sum('price') / $totalPrice * 100;
-//            $service->quantity = Order::where('is_paid', 1)->where('service_id', $service->id)->whereBetween('created_at', [$from, $to])->sum('quantity') / $totalQuantity * 100;
+            //            $service->quantity = Order::where('is_paid', 1)->where('service_id', $service->id)->whereBetween('created_at', [$from, $to])->sum('quantity') / $totalQuantity * 100;
         }
         $services = $services->sortByDesc('sum');
 

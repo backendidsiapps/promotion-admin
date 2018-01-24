@@ -1,7 +1,8 @@
 google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawMaterial);
 
-function drawMaterial() {
+function drawMaterial() 
+{
     var data = google.visualization.arrayToDataTable(
         window.dataArr
     );
