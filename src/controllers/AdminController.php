@@ -64,8 +64,11 @@ class AdminController extends Controller
         if ($flag) {
             $qForOrders->orderByDesc('id');
         }
-        if (session()->has('is_paid')) {
+        $paid = session('paid', 'all');
+        if ($paid == 'paid') {
             $qForOrders = $qForOrders->where('is_paid', 1);
+        } elseif ($paid == 'not_paid') {
+            $qForOrders = $qForOrders->where('is_paid', 0);
         }
         $qForPrices = clone $qForOrders;
         $sum = $qForPrices->where('is_paid', 1)->sum('price');
@@ -96,10 +99,13 @@ class AdminController extends Controller
 
     public function isPaid()
     {
-        if (request('is_paid')) {
-            session(['is_paid' => 1]);
-        } else {
-            session()->forget('is_paid');
+
+        if (request('paid', '') == 'all') {
+            session(['paid' => 'all']);
+        } elseif (request('paid') == 'not_paid') {
+            session(['paid' => 'not_paid']);
+        } elseif (request('paid') == 'paid') {
+            session(['paid' => 'paid']);
         }
 
         return back();

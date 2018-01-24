@@ -75,13 +75,14 @@
                                     цена
                                     <a href="/admin/orders?price=asc">&#8642;</a>
                                 </th>
-                                <th class="text-center" scope="col">
-                                    оплачен
-                                    @if(!session()->has('is_paid'))
-                                        <a href="/admin/set-is_paid?is_paid=1">&#10007;</a>
-                                    @else
-                                        <a href="/admin/set-is_paid?is_paid=0">&#10004;</a>
-                                    @endif
+                                <th style="font-size: small" scope="col">
+                                    <a href="/admin/set-is_paid?paid=all">все</a>@if(session('paid','all')=='all')
+                                        ✔ @endif<br>
+                                    <a href="/admin/set-is_paid?paid=paid">оплаченные</a>@if(session('paid','')=='paid')
+                                        ✔ @endif<br>
+                                    <a href="/admin/set-is_paid?paid=not_paid">не
+                                        оплаченные</a>@if(session('paid','')=='not_paid')
+                                        ✔ @endif
                                 </th>
                                 <th class="text-center" scope="col">
                                     <a href="/admin/orders?smmlaba_order_id=desc">&#8639;</a>
