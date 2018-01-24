@@ -64,7 +64,7 @@ class AdminController extends Controller
         if ($flag) {
             $qForOrders->orderByDesc('id');
         }
-        $paid = session('paid', 'all');
+        $paid = session('is_paid', 'all');
         if ($paid == 'paid') {
             $qForOrders = $qForOrders->where('is_paid', 1);
         } elseif ($paid == 'not_paid') {
@@ -100,12 +100,12 @@ class AdminController extends Controller
     public function isPaid()
     {
 
-        if (request('paid', '') == 'all') {
-            session(['paid' => 'all']);
-        } elseif (request('paid') == 'not_paid') {
-            session(['paid' => 'not_paid']);
-        } elseif (request('paid') == 'paid') {
-            session(['paid' => 'paid']);
+        if (request('is_paid', '') == 'all') {
+            session(['is_paid' => 'all']);
+        } elseif (request('is_paid') == 'not_paid') {
+            session(['is_paid' => 'not_paid']);
+        } elseif (request('is_paid') == 'paid') {
+            session(['is_paid' => 'paid']);
         }
 
         return redirect()->route('admin orders');
