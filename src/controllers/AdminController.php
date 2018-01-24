@@ -10,7 +10,6 @@ use App\Pack;
 use App\Price;
 use App\Promocode;
 use App\Service;
-use Auth;
 use Carbon\Carbon;
 use DB;
 use function back;
@@ -21,6 +20,7 @@ use function redirect;
 use function request;
 use function route;
 use function session;
+use function session_id;
 use function view;
 
 
@@ -102,7 +102,7 @@ class AdminController extends Controller
 
     public function isPaid()
     {
-        $key = Auth::user()->email . '_is_paid';
+        $key = session_id() . '_is_paid';
 
         if (request('is_paid', 'all') == 'all') {
             cache([$key => 'all'], now()->addYear());
