@@ -14,7 +14,7 @@
     }
   ],
   "require": {
-    "backendidsiapps/promocode": "@dev"
+    "backendidsiapps/promocode": "dev-master"
   },
   "autoload": {
     "psr-4": {
