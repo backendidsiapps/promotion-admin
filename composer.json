@@ -6,7 +6,7 @@
   ],
   "license": "MIT",
   "version": "1.0.0",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "authors": [
     {
       "name": "Backend",
@@ -14,8 +14,7 @@
     }
   ],
   "require": {
-    "backendidsiapps/promocode": "*",
-    "backendidsiapps/promotion-admin": "*"
+    "backendidsiapps/promocode": "@dev"
   },
   "autoload": {
     "psr-4": {
