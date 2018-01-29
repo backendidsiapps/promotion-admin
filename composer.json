@@ -21,5 +21,12 @@
     "psr-4": {
       "AdminPanel\\": "src/"
     }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "AdminPanel\\AdminPanelServiceProvider"
+      ]
+    }
   }
 }
