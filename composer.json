@@ -14,6 +14,7 @@
     }
   ],
   "require": {
+    "backendidsiapps/promocode": "dev-master",
     "backendidsiapps/promotion-admin": "*"
   },
   "autoload": {
