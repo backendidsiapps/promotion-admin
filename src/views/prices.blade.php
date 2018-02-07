@@ -24,17 +24,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($service->packs as $pack)
+                                    @foreach($service->packs as $iter => $pack)
                                         <tr>
                                             <th scope="row">{{$pack->quantity}}</th>
-                                            @foreach($pack->prices as $price)
+                                            @foreach($pack->prices as  $price)
                                                 <td>
-                                                    <input title="текущая цена"
+                                                    <input @if($iter != 0) readonly
+                                                           @else title="вводить базовую цену (за 100 едениц)" @endif
                                                            style="width: 65px;background: {!! $price->status == 2? '#ef494d':''!!}{!! $price->status == 1? '#ffa341':''!!}"
                                                            step="0.01"
                                                            name="price[{{$price->id}}][price]"
                                                            value="{{$price->price}}" class="input-sm">
-                                                    <input title="цена без скидки"
+                                                    <input @if($iter != 0) readonly
+                                                           @else title="вводить базовую цену без скидки (за 100 едениц)"
+                                                           @endif
                                                            style="width: 65px;background: {!! $price->status == 2? '#ef494d':''!!}{!! $price->status == 1? '#ffa341':''!!}"
                                                            step="0.01"
                                                            name="price[{{$price->id}}][price_without_discount]"
