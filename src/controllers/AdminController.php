@@ -100,7 +100,6 @@ class AdminController extends Controller
         )->paginate(50);
 
         return view('admin::orders', compact('orders', 'sum'));
-
     }
 
     public function isPaid()
@@ -197,18 +196,49 @@ class AdminController extends Controller
     public function updatePrices()
     {
         DB::beginTransaction();
-        foreach (request('price', []) as $id => $price) {
-            Price::where('id', $id)->update(
+        $prices = request('price');
+        $basePrice = array_shift($prices)['price'];
+        $prices = request('price');
+        $basePriceWithout = array_shift($prices)['price_without_discount'];
+
+        foreach (request('price', []) as $id => $priceNew) {
+//            dd($priceNew);
+            $price = Price::find($id);
+            $pack = Pack::find($price->pack_id);
+            $price->update(
                 [
-                    'price'                  => (float)$price['price'],
-                    'status'                 => $price['status'],
-                    'price_without_discount' => (float)$price['price_without_discount'],
+                    'price'                  => (float)$this->getPrice($basePrice, $pack->quantity),
+                    'status'                 => $priceNew['status'],
+                    'price_without_discount' => (float)$this->getPrice($basePriceWithout, $pack->quantity),
                 ]
             );
         }
+
         DB::commit();
 
         return redirect(request('backURL'));
+    }
+
+    private function getPrice($price, $quantity)
+    {
+        $factor = 0.0;
+        if ($quantity >= 100 && $quantity < 300) {
+            $factor = 1.0;
+        } elseif ($quantity >= 300 && $quantity < 500) {
+            $factor = 0.8;
+        } elseif ($quantity >= 500 && $quantity < 1000) {
+            $factor = 0.6;
+        } elseif ($quantity >= 1000 && $quantity < 3000) {
+            $factor = 0.55;
+        } elseif ($quantity >= 3000 && $quantity < 5000) {
+            $factor = 0.45;
+        } elseif ($quantity >= 5000 && $quantity < 10000) {
+            $factor = 0.4;
+        } elseif ($quantity >= 5000) {
+            $factor = 0.35;
+        }
+
+        return round($factor * ($quantity / 100.0) * $price, 2);
     }
 
     public function updateCommentOrder()
