@@ -22,7 +22,8 @@
                             <div class="jumbotron">
                                 <h4>скидка {{$promocode->discount}} %</h4>
                                 <h2>{{$promocode->code}}</h2>
-                                <h4><a href="{{'http://' . $_SERVER['HTTP_HOST'].'/thanks/'. $promocode->hash}}">страница
+                                <h4>
+                                    <a href="{{'http://' . $_SERVER['HTTP_HOST'].'/thanks?customField2='. $promocode->hash}}">страница
                                         спасибо </a></h4>
                             </div>
                         @endif
