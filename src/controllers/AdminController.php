@@ -209,7 +209,8 @@ class AdminController extends Controller
                 [
                     'price'                  => (float)$this->getPrice($basePrice, $pack->quantity),
                     'status'                 => $priceNew['status'],
-                    'price_without_discount' => (float)$this->getPrice($basePriceWithout, $pack->quantity),
+                    'price_without_discount' => (float)$basePrice / 100.0 * $pack->quantity,
+//                    'price_without_discount' => (float)$this->getPrice($basePriceWithout, $pack->quantity),
                 ]
             );
         }
