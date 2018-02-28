@@ -99,7 +99,15 @@
                                 {{--{{$iter}}--}}
                                 @foreach($orders as $iter => $order)
                                     <tr>
-                                        <th class="" scope="row"><h4>{{$iter+1}}</h4></th>
+                                        @if($orders->currentpage() == 1)
+                                            <th class="" scope="row">
+                                                <h4>{{($orders->currentpage()) * ($loop->iteration)}}</h4>
+                                            </th>
+                                        @else
+                                            <th class="" scope="row">
+                                                <h4>{{($orders->currentpage() - 1) * ($orders->perpage()+$loop->iteration)}}</h4>
+                                            </th>
+                                        @endif
                                         <th class="" scope="row"><h4>{{$order->id}}</h4></th>
                                         <th class="" scope="row"><h4>{{$order->country['locale_word']}}</h4></th>
                                         <th class="" scope="row">
