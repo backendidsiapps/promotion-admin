@@ -67,6 +67,7 @@ class AdminController extends Controller
         }
 
         $paid = session('is_paid', 'all');
+
         if ($paid == 'paid') {
             $qForOrders = $qForOrders->where('is_paid', 1);
         } elseif ($paid == 'not_paid') {
@@ -119,7 +120,8 @@ class AdminController extends Controller
                 break;
         }
 
-        return redirect()->back();
+        return redirect()->back(302, ['Cache-Control' => 'private, must-revalidate,
+        max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0']);
     }
 
     /**
