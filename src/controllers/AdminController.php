@@ -104,16 +104,22 @@ class AdminController extends Controller
 
     public function isPaid()
     {
-
-        if (request('is_paid', '') == 'all') {
-            session(['is_paid' => 'all']);
-        } elseif (request('is_paid') == 'not_paid') {
-            session(['is_paid' => 'not_paid']);
-        } elseif (request('is_paid') == 'paid') {
-            session(['is_paid' => 'paid']);
+        switch (request('is_paid', '')) {
+            case 'all':
+                session(['is_paid' => 'all']);
+                break;
+            case 'not_paid':
+                session(['is_paid' => 'not_paid']);
+                break;
+            case 'paid':
+                session(['is_paid' => 'paid']);
+                break;
+            default:
+                session(['is_paid' => 'all']);
+                break;
         }
 
-        return redirect()->route('admin orders');
+        return redirect()->back();
     }
 
     /**
