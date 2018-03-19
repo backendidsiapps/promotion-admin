@@ -34,7 +34,7 @@
                                     <td class="text-center">
                                         <form id="form-{{$feedback->id}}" action="{{route('comment to feedback')}}"
                                               method="post">
-                                            <input class="form-control" name="comment"
+                                            <input title="{{$feedback->comment}}" class="form-control" name="comment"
                                                    value="{{$feedback->comment}}">
                                             <input class="" type="hidden" name="feedbackID"
                                                    value="{{$feedback->id}}">
