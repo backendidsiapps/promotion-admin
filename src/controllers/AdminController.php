@@ -52,7 +52,7 @@ class AdminController extends Controller
         $to = Carbon::createFromFormat('Y-m-d H:i:s', request('to', '2027-01-01') . ' 00:00:00');
 
 
-        $qForOrders = Order::select('*')->whereBetween('created_at', [$from, $to]);
+        $qForOrders = Order::select('*')->with('user')->whereBetween('created_at', [$from, $to]);
 
         $keys = ['id', 'url', 'quantity', 'price', 'smmlaba_order_id'];
         $flag = true;

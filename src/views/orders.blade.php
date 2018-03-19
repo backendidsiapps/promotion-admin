@@ -4,10 +4,10 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-default">
+                <div class="panel panel-default"
+                     style="  width: 100%; overflow-x: auto; white-space: nowrap; max-height: 90vh">
                     <div class="panel-heading">Заказы</div>
                     {{--{{ $orders->appends(request()->input())->links() }}--}}
-
                     <div style="display: flex;flex-direction: row;">
                         <form class="navbar-form" role="search" action="/admin/search" method="get">
                             <div class="input-group add-on">
@@ -66,6 +66,9 @@
                                     {{--<a href="/admin/orders?url=asc">&#8642;</a>--}}
                                 </th>
                                 <th class="text-center" scope="col">
+                                    email
+                                </th>
+                                <th class="text-center" scope="col">
                                     <a href="/admin/orders?quantity=desc">&#8639;</a>
                                     кол-во
                                     <a href="/admin/orders?quantity=asc">&#8642;</a>
@@ -90,7 +93,7 @@
                                     <a href="/admin/orders?smmlaba_order_id=asc">&#8642;</a>
                                 </th>
                                 <th class="text-center" scope="col">комментарий</th>
-                                <th class="text-center" scope="col">сохранить</th>
+                                <th class="text-center" scope="col"></th>
 
                             </tr>
                             </thead>
@@ -108,25 +111,26 @@
                                                 <h4>{{ $orders->total() - $loop->iteration +1 - ($orders->perpage()*($orders->currentpage()-1))}}</h4>
                                             </th>
                                         @endif
-                                        <th class="" scope="row"><h4>{{$order->id}}</h4></th>
-                                        <th class="" scope="row"><h4>{{$order->country['locale_word']}}</h4></th>
+                                        <th class="" scope="row"><h5>{{$order->id}}</h5></th>
+                                        <th class="" scope="row"><h5>{{$order->country['locale_word']}}</h5></th>
                                         <th class="" scope="row">
-                                            <h4>{{$order->created_at->timezone('Asia/Krasnoyarsk')->format('d.m.Y H:i')}}</h4>
+                                            <h5>{{$order->created_at->timezone('Asia/Krasnoyarsk')->format('d.m.Y H:i')}}</h5>
                                         </th>
                                         <td class="">{{trans('site.'.$order->name)}}</td>
-                                        <td>{{$order->url}}</td>
-                                        <td class="text-center"><h4
-                                                    style="margin-left: 20px;margin-right: 20px;">{{$order->quantity}}</h4>
+                                        <td style="font-size: 12px;max-width: 280px; overflow: scroll">{{$order->url}}</td>
+                                        <td style=" font-size: 12px;max-width: 250px; overflow: scroll">{{ $order->user->email }}</td>
+                                        <td class="text-center"><h5
+                                                    style="margin-left: 20px;margin-right: 20px;">{{$order->quantity}}</h5>
                                         </td>
-                                        <td class="text-center"><h4 style="margin-left: 20px;margin-right: 20px;">
-                                                ${{$order->price}}</h4></td>
+                                        <td class="text-center"><h5 style="margin-left: 20px;margin-right: 20px;">
+                                                ${{$order->price}}</h5></td>
                                         <td class="text-center {!! $order->is_paid ? 'success' : 'danger'!!}">
-                                            <h4 style="margin-left: 40px;margin-right: 40px;">{!! $order->is_paid ? '●' : '❌'!!}</h4>
+                                            <h6 style="min-width: 50px">{!! $order->is_paid ? '●' : '❌'!!}</h6>
                                         </td>
                                         <td class="text-center {!! $order->smmlaba_order_id ? 'success' : 'danger'!!}">
-                                            <h4 style="margin-left: 40px;margin-right: 40px;">{{$order->smmlaba_order_id ?? '-'}}</h4>
+                                            <h6 style="min-width: 50px">{{$order->smmlaba_order_id ?? '-'}}</h6>
                                         </td>
-                                        <td class="text-center">
+                                        <td title="{{$order->comment}}" class="text-center" style="min-width: 150px">
                                             <form id="form-{{$order->id}}" action="{{route('comment')}}" method="post">
                                                 <input class="form-control" name="comment" value="{{$order->comment}}">
                                                 <input class="" type="hidden" name="orderID"
@@ -136,7 +140,7 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <input class="btn btn-success" type="submit" value="✔"
+                                            <input title="сохранить" class="btn btn-success" type="submit" value="✔"
                                                    onclick="document.getElementById('form-{{$order->id}}').submit();">
                                         </td>
 
