@@ -114,7 +114,7 @@
                                         <th class="" scope="row"><h5>{{$order->id}}</h5></th>
                                         <th class="" scope="row"><h5>{{$order->country['locale_word']}}</h5></th>
                                         <th class="" scope="row">
-                                            <h5>{{$order->created_at->timezone('Asia/Krasnoyarsk')->format('d.m.Y H:i')}}</h5>
+                                            <h5>{{$order->created_at->subHours(5)->format('d.m.Y H:i')}}</h5>
                                         </th>
                                         <td class="">{{trans('site.'.$order->name)}}</td>
                                         <td style="font-size: 12px;max-width: 280px; overflow: scroll">{{$order->url}}</td>
