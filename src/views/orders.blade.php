@@ -101,11 +101,11 @@
                                     <tr>
                                         @if($orders->currentpage() == 1)
                                             <th class="" scope="row">
-                                                <h4>{{($orders->currentpage()) * ($loop->iteration)}}</h4>
+                                                <h4>{{ $orders->total() + 1 - ($orders->currentpage()) * ($loop->iteration)}}</h4>
                                             </th>
                                         @else
                                             <th class="" scope="row">
-                                                <h4>{{($orders->currentpage() - 1) * ($orders->perpage()+$loop->iteration)}}</h4>
+                                                <h4>{{ $orders->total() - $loop->iteration +1 - ($orders->perpage()*($orders->currentpage()-1))}}</h4>
                                             </th>
                                         @endif
                                         <th class="" scope="row"><h4>{{$order->id}}</h4></th>
