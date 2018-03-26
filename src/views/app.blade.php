@@ -32,16 +32,13 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{route('admin orders')}}">
-                    {{ config('app.name', 'Laravel') }}
+                <a style="padding: 0px; padding-top: 15px" class="navbar-brand"
+                   href="{{route('admin orders')}}">{{ config('app.name', 'Laravel') }}
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    &nbsp;
-                </ul>
+
                 @if(Auth::check())
                     <ul class="nav navbar-nav navbar-right">
                         <li><a>Баланс: <b>{{ $balance->balance ?? ''}} {{ $balance->currency ?? '' }}</b></a></li>
