@@ -44,7 +44,7 @@
                 </ul>
                 @if(Auth::check())
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a>Баланс: <b>{{ $balance->balance }} {{ $balance->currency }}</b></a></li>
+                        <li><a>Баланс: <b>{{ $balance->balance ?? ''}} {{ $balance->currency ?? '' }}</b></a></li>
                         <li><a href="{{route('admin orders')}}">Заказы</a></li>
                         @if(Auth::user()->isAdmin())
                             <li><a href="{{route('stats')}}">Статистика</a></li>
