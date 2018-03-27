@@ -14,6 +14,7 @@
     <link href="https://rawgit.com/backendidsiapps/promotion-admin/master/src/assets/admin.css"
           rel="stylesheet">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://rawgit.com/backendidsiapps/promotion-admin/master/src/assets/admin.js"></script>
 
 </head>
 <body>
@@ -32,9 +33,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{route('admin orders')}}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <a class="navbar-brand" href="{{route('admin orders')}}">adminka</a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -50,6 +49,27 @@
                             <li><a href="{{route('stats')}}">Статистика</a></li>
                             <li><a href="/admin/promocode">Промокод</a></li>
                             <li><a href="/admin/packs">Пакеты</a></li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false"
+                                   aria-haspopup="true">
+                                    smm IDS <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    @foreach(\App\Service::get() as $service)
+                                        <li>
+                                            <a href="{{ route('edit_smmservice',['serviceID'=> $service->id]).
+                                            '#'.$service->description}}"
+                                               onclick=""> {{mb_strtoupper($service->name)}} </a>
+                                        </li>
+                                    @endforeach
+
+                                </ul>
+                            </li>
+
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false"
@@ -101,6 +121,5 @@
 </div>
 
 <!-- Scripts -->
-<script src="https://rawgit.com/backendidsiapps/promotion-admin/master/src/assets/admin.js"></script>
 </body>
 </html>
