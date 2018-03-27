@@ -30,9 +30,15 @@ Route::group(
     Route::get('/prices/{service}', 'AdminController@prices')->name('prices');
     //страница создания промокода
     Route::get('/promocode', 'AdminController@promocode')->name('promocode');
+    Route::get('/promocode2', 'AdminController@promocode')->name('promocode');
     //генерирование промокода
     Route::post('/promocode', 'AdminController@generatePromocode')->name('generate promocode');
     //статистика
     Route::get('/stats', 'AdminController@stats')->name('stats');
+
+
+    Route::post('/save-json-services', 'ServiceIDSController@update')->name('saveSmmServiceIDS');
+
+    Route::get('/edit/smmservice/{serviceID}', 'ServiceIDSController@edit')->name('edit_smmservice');
 }
 );

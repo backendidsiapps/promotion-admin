@@ -36,10 +36,10 @@
                         </form>
                     </div>
                     <div class="panel-body">
-                        <h5>количество заказов: <span style="background-color: #E67E22"
-                                                      class="badge big-font">{{$orders->total()}}</span></h5>
-                        <h5>сумма зачислений: <span style="background-color: #e74c3c"
-                                                    class="badge big-font">{{$sum}}</span></h5>
+                        <h4>количество заказов: <span style="background-color: #E67E22"
+                                                      class="badge big-font">{{$orders->total()}}</span></h4>
+                        <h4>сумма зачислений: <span style="background-color: #e74c3c"
+                                                    class="badge big-font">{{$sum}}</span></h4>
 
                         <table class="table table-hover">
                             <thead>
