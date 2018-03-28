@@ -33,7 +33,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{route('admin orders')}}">adminka</a>
+                {{--<a class="navbar-brand" href="{{route('admin orders')}}">adminka</a>--}}
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -43,7 +43,8 @@
                 </ul>
                 @if(Auth::check())
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a>Баланс: <b>{{$balance}} &#8381;</b></a></li>
+                        <li><a>Баланс:
+                                <b>{{$balance->balance ?? $balance}} {{ $balance->currency ?? '&#8381;' }}</b></a></li>
                         <li><a href="{{route('admin orders')}}">Заказы</a></li>
                         @if(Auth::user()->isAdmin())
                             <li><a href="{{route('stats')}}">Статистика</a></li>

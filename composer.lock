@@ -1,0 +1,63 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "8a636f90bd9600a5795015fe4d2d5b01",
+    "packages": [
+        {
+            "name": "backendidsiapps/promocode",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/backendidsiapps/promocode.git",
+                "reference": "e3706687e974df529067fc5ca6c995935d90432f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/backendidsiapps/promocode/zipball/e3706687e974df529067fc5ca6c995935d90432f",
+                "reference": "e3706687e974df529067fc5ca6c995935d90432f",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Backendidsiapps\\Promocode\\PromocodeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Backendidsiapps\\Promocode\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Backend",
+                    "email": "backendidsiapps@gmail.com"
+                }
+            ],
+            "keywords": [
+                "laravel",
+                "promocode"
+            ],
+            "time": "2018-02-16T05:44:48+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "backendidsiapps/promocode": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
