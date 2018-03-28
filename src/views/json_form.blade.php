@@ -30,12 +30,13 @@
                 {{ csrf_field() }}
             </form>
 
-            <button title="default - обязательно поле, оно будет отрабатывать есть для нужной страны нет значения, остальные - по необходимости.
+            <button title="default - обязательно поле, оно будет отрабатывать если для нужной страны нет значения, остальные - по необходимости.
 памятка по странам:
 @foreach($countries as $country)
             {{ "{$country->iso} : " . getCountryByISO($country->iso)->name  }}
             @endforeach
-                    " class="btn btn-success" onclick="send()">save</button>
+                    " class="btn btn-success" onclick="send()">save
+            </button>
             <script>
                 var editor = ace.edit("editorJSON");
                 editor.setTheme("ace/theme/solarized_light");
