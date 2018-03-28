@@ -14,6 +14,7 @@
                 /*}*/
                 #editorJSON {
                     margin: 20px;
+                    font-family: monospace;
                     /*position: absolute;*/
                     /*top: 80px;*/
                     /*bottom: 0;*/
@@ -42,7 +43,7 @@
                 editor.setTheme("ace/theme/solarized_light");
                 editor.session.setMode("ace/mode/javascript");
                 editor.setOptions({
-                    fontFamily: "fira Code",
+                    // fontFamily: "fira Code",
                     fontSize: "14pt"
                 });
 
