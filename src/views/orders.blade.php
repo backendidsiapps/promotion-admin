@@ -118,7 +118,7 @@
                                         </th>
                                         <td class="">{{trans('site.'.$order->name)}}</td>
                                         <td style="font-size: 12px;max-width: 280px; overflow: scroll">{{$order->url}}</td>
-                                        <td style=" font-size: 12px;max-width: 250px; overflow: scroll">{{ $order->user->email }}</td>
+                                        <td style=" font-size: 12px;max-width: 250px; overflow: scroll">{{ !empty($order->user)? $order->user->email : '-'}}</td>
                                         <td class="text-center"><h5
                                                     style="margin-left: 20px;margin-right: 20px;">{{$order->quantity}}</h5>
                                         </td>
