@@ -1,6 +1,16 @@
 @extends('admin::app')
 
 @section('content')
+    <script src="/js/manifest.js" type="text/javascript"></script>
+    <script src="/js/vendor.js" type="text/javascript"></script>
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <script>
+        window.resetTexts = {
+            'В работе': 'В работе',
+            'Измените настройки приватности профиля': 'настройки приватности',
+            'Ошибка': 'Ошибка',
+        }
+    </script>
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-12">
@@ -127,9 +137,20 @@
                                         <td class="text-center {!! $order->is_paid ? 'success' : 'danger'!!}">
                                             <h6 style="min-width: 50px">{!! $order->is_paid ? '●' : '❌'!!}</h6>
                                         </td>
-                                        <td class="text-center {!! $order->smmlaba_order_id ? 'success' : 'danger'!!}">
-                                            <h6 style="min-width: 50px">{{$order->smmlaba_order_id ?? '-'}}</h6>
-                                        </td>
+
+                                        @if($order->smmlaba_order_id)
+                                            <td class="text-center success">
+                                                <h6 style="min-width: 50px">{{$order->smmlaba_order_id}}</h6>
+                                            </td>
+                                        @else
+                                            <td>
+                                                <div style="text-align: center; font-size: 20px"><a
+                                                            class="restart-order link"
+                                                            data-id="{{$order->id}}">↺</a>
+                                                </div>
+                                            </td>
+                                        @endif
+
                                         <td title="{{$order->comment}}" class="text-center" style="min-width: 150px">
                                             <form id="form-{{$order->id}}" action="{{route('comment')}}" method="post">
                                                 <input class="form-control" name="comment" value="{{$order->comment}}">
@@ -162,4 +183,6 @@
             </div>
         </div>
     </div>
+    <script src="/js/restart-order.js"></script>
+
 @endsection
