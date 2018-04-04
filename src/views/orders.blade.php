@@ -150,7 +150,7 @@
                                                 </div>
                                             </td>
                                         @else
-                                            <td class="text-center success">
+                                            <td class="text-center danger">
                                                 <h6 style="min-width: 50px">X</h6>
                                             </td>
                                         @endif
