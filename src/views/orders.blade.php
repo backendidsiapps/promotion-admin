@@ -142,12 +142,16 @@
                                             <td class="text-center success">
                                                 <h6 style="min-width: 50px">{{$order->smmlaba_order_id}}</h6>
                                             </td>
-                                        @else
+                                        @elseif($order->is_paid)
                                             <td>
                                                 <div style="text-align: center; font-size: 20px"><a
                                                             class="restart-order link"
                                                             data-id="{{$order->id}}">↺</a>
                                                 </div>
+                                            </td>
+                                        @else
+                                            <td class="text-center success">
+                                                <h6 style="min-width: 50px">X</h6>
                                             </td>
                                         @endif
 
