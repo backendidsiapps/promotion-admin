@@ -94,9 +94,9 @@ class AdminController extends Controller
                 }
             )->sum('price');
 
-        $orders = Order::where(
+        $orders = Order::leftJoin('users', 'orders.user_id', '=', 'users.id')->where(
             function ($q) use ($search) {
-                $q->where('id', $search)->orWhere('smmlaba_order_id', $search)->orWhere('url', 'LIKE', '%' . $search . '%');
+                $q->where('id', $search)->orWhere('smmlaba_order_id', $search)->orWhere('url', 'LIKE', '%' . $search . '%')->orWhere('users.email', $search);
             }
         )->paginate(50);
 
