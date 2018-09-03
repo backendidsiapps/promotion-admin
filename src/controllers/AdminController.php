@@ -99,6 +99,8 @@ class AdminController extends Controller
                 $q->where('orders.id', $search)->orWhere('smmlaba_order_id', $search)->orWhere('url', 'LIKE', '%' . $search . '%')->orWhere('users.email', $search);
             }
         )->paginate(50);
+        
+        print_r('search test');
 
         return view('admin::orders', compact('orders', 'sum'));
     }
