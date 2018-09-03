@@ -90,7 +90,7 @@ class AdminController extends Controller
         $sum = Order::where('is_paid', 1)
             ->where(
                 function ($q) use ($search) {
-                    $q->where('id', $search)->orWhere('smmlaba_order_id', $search)->orWhere('url', 'LIKE', '%' . $search . '%');
+                    $q->where('orders.id', $search)->orWhere('smmlaba_order_id', $search)->orWhere('url', 'LIKE', '%' . $search . '%');
                 }
             )->sum('price');
 
