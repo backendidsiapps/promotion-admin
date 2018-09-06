@@ -1,6 +1,6 @@
 <?php
 
-// use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Route; +
 
 Route::group(
     ['namespace' => 'AdminPanel\Controllers', 'prefix' => 'admin', 'middleware' => ['web']], function () {
